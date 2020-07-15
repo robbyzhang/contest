@@ -1,9 +1,24 @@
+ class ListNode {
+    int val;
+
+    ListNode next;
+
+    ListNode() {}
+
+    ListNode(int val) { this.val = val; }
+
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
 
 public class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode ret = solution.addTwoNumbers(toListNode("342"), toListNode("465"));
         System.out.println(eq(ret, "807"));
+
+
+        System.exit(0);
     }
 
     static ListNode toListNode(String s){
