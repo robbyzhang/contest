@@ -17,8 +17,7 @@ public class Main {
         ListNode ret = solution.addTwoNumbers(toListNode("342"), toListNode("465"));
         System.out.println(eq(ret, "807"));
 
-
-        System.exit(0);
+        System.exit(1);
     }
 
     static ListNode toListNode(String s){
