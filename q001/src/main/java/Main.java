@@ -1,4 +1,6 @@
- class ListNode {
+import java.util.Random;
+
+class ListNode {
     int val;
 
     ListNode next;
@@ -8,29 +10,85 @@
     ListNode(int val) { this.val = val; }
 
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+    public String toString(){
+        String ret = "";
+        ret = val + ret;
+        ListNode p = next;
+        while (p != null){
+            ret = p.val + ret;
+            p = p.next;
+        }
+
+        return ret;
+
+    }
 }
 
-
 public class Main {
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        ListNode ret = solution.addTwoNumbers(toListNode("342"), toListNode("465"));
-        System.out.println(eq(ret, "807"));
 
-        System.exit(1);
+    public static void test(String a, String b, String expected){
+        Solution solution = new Solution();
+        ListNode result = solution.addTwoNumbers(toListNode(a), toListNode(b));
+        if(!eq(result, expected)){
+            String msg = String.format("%s + %s, expected:%s, actual:%s", a, b, expected, result.toString());
+            throw new RuntimeException(msg);
+        }
+    }
+
+    static Random rn = new Random(System.currentTimeMillis());
+    public static int getRandomInt(){
+        return Math.abs(rn.nextInt())/2;
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
+    public static void main(String[] args) {
+        try {
+            for(int i = 0; i < 100; i++){
+                int a = getRandomInt();
+                int b = getRandomInt();
+                int c = a + b;
+                test(Integer.toString(a), Integer.toString(b), Integer.toString(c));
+            }
+
+//            test("342", "465", "807");
+//            test("1", "10", "11");
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
+        System.exit(0);
     }
 
     static ListNode toListNode(String s){
         ListNode head = null;
-        ListNode tail = null;
         for(int i=0; i<s.length(); i++){
             char ch = s.charAt(i);
             if(head == null){
                 head = new ListNode(ch - '0');
-                tail = head;
             }else{
-                tail.next = new ListNode(ch - '0');
-                tail = tail.next;
+                ListNode newHead = new ListNode(ch - '0');
+                newHead.next = head;
+                head = newHead;
             }
         }
 
@@ -44,7 +102,6 @@ public class Main {
             ret = p.val + ret;
             p = p.next;
         }
-        System.out.println(ret);
 
         return ret.equals(s);
     }
