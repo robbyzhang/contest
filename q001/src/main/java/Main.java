@@ -69,14 +69,12 @@ public class Main {
                 int c = a + b;
                 test(Integer.toString(a), Integer.toString(b), Integer.toString(c));
             }
-
-//            test("342", "465", "807");
-//            test("1", "10", "11");
         }catch (Exception ex){
             System.out.println(ex.getMessage());
             System.exit(1);
         }
         System.exit(0);
+
     }
 
     static ListNode toListNode(String s){
