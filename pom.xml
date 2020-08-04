@@ -11,6 +11,7 @@
     <modules>
         <module>q001</module>
         <module>q003</module>
+        <module>test</module>
     </modules>
 
 
