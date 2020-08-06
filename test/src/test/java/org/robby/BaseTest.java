@@ -11,6 +11,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
+import java.util.Base64;
+
 public class BaseTest extends TestCase {
     public String baseUrl = "http://39.105.115.164:8080";
     RequestConfig config;
@@ -20,6 +22,11 @@ public class BaseTest extends TestCase {
         config = RequestConfig.custom()
                 .setProxy(proxy)
                 .build();
+    }
+
+    public String decodeBase64(String str){
+        byte[] decodedBytes = Base64.getDecoder().decode(str);
+        return new String(decodedBytes);
     }
 
     public String httpGet(String url){
