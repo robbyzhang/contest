@@ -10,8 +10,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.junit.Assert;
 
 import java.util.Base64;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import static org.awaitility.Awaitility.await;
 
 public class BaseTest extends TestCase {
     public String baseUrl = "http://39.105.115.164:8080";
@@ -66,5 +73,22 @@ public class BaseTest extends TestCase {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public void prun(int total, int waitSec, Supplier supplier){
+        ConcurrentLinkedDeque<Integer> result = new ConcurrentLinkedDeque();
+        for(int i = 0; i < total; i++) {
+            int finalI = i;
+            new Thread(){
+                @Override
+                public void run(){
+                    supplier.get();
+                    System.out.println("#" + finalI + " is finished");
+                    result.add(0);
+                }
+            }.start();
+        }
+
+        await().atMost(waitSec, TimeUnit.SECONDS).untilAsserted(() -> assertTrue(result.size() == total));
     }
 }

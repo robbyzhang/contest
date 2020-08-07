@@ -18,6 +18,20 @@ public class AnswerChoiceTest extends BaseTest {
     }
 
     @Test
+    public void test_success_performance()  {
+        prun(30, 30, ()->{
+            AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
+                    new Answer(0, 130, "b"),
+                    AnswerResponse.class);
+
+            Assert.assertEquals(resp.getScore(), 20);
+            Assert.assertEquals(resp.getQuestionId(), 130);
+            Assert.assertTrue(resp.isCorrect());
+            return null;
+        });
+    }
+
+    @Test
     public void test_success2()  {
         AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
                 new Answer(0, 130, "B"),
