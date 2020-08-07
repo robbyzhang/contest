@@ -8,10 +8,18 @@ public class AnswerMultiChoiceTest extends BaseTest {
     @Test
     public void test_success()  {
         AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
-                new Answer(0, questionId, "yes"),
+                new Answer(0, questionId, "B,C"),
                 AnswerResponse.class);
 
-        System.out.println(resp.getResult());
+        Assert.assertEquals(20, resp.getScore());
+        Assert.assertEquals(resp.getQuestionId(), questionId);
+        Assert.assertTrue(resp.isCorrect());
+
+        resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
+                new Answer(0, questionId, "c,b"),
+                AnswerResponse.class);
+
+
         Assert.assertEquals(20, resp.getScore());
         Assert.assertEquals(resp.getQuestionId(), questionId);
         Assert.assertTrue(resp.isCorrect());
