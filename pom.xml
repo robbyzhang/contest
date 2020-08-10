@@ -12,6 +12,9 @@
         <module>q001</module>
         <module>q003</module>
         <module>test</module>
+        <module>tf_pro_001</module>
+        <module>tf_pro_002</module>
+        <module>tf_pro_003</module>
     </modules>
 
 

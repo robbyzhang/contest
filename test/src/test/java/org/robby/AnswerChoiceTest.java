@@ -19,7 +19,7 @@ public class AnswerChoiceTest extends BaseTest {
 
     @Test
     public void test_success_performance()  {
-        prun(30, 30, ()->{
+        prun(100, 30, ()->{
             AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
                     new Answer(0, 130, "b"),
                     AnswerResponse.class);
