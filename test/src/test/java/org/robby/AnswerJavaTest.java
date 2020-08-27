@@ -16,9 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.sun.javaws.JnlpxArgs.verify;
-import static org.awaitility.Awaitility.await;
-import static org.junit.Assert.assertTrue;
+
 
 public class AnswerJavaTest extends BaseTest {
     private int questionId = 129;

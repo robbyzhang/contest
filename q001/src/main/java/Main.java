@@ -26,7 +26,6 @@ class ListNode {
 }
 
 public class Main {
-
     public static void test(String a, String b, String expected){
         Solution solution = new Solution();
         ListNode result = solution.addTwoNumbers(toListNode(a), toListNode(b));
@@ -34,7 +33,6 @@ public class Main {
             String msg = String.format("%s + %s, expected:%s, actual:%s", a, b, expected, result.toString());
             throw new RuntimeException(msg);
         }
-
     }
 
     static Random rn = new Random(System.currentTimeMillis());
