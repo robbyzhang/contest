@@ -1,4 +1,4 @@
-## Parsing A Boolean Expression
+## Parsing A Boolean Expression [60 points]
 Return the result of evaluating a given boolean expression, represented as a string.
 
 An expression can either be:
