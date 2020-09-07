@@ -1,5 +1,5 @@
 class Solution {
-    public int numIslands(char[][] grid) {
+    public int maxScore(int[] cardPoints, int k) {
 
     }
 }

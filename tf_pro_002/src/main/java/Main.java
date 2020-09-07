@@ -2,90 +2,62 @@ import java.util.Random;
 
 public class Main {
     static Random rn = new Random(System.currentTimeMillis());
-    public static int getRandomInt(int max){
-        return Math.abs(rn.nextInt())%max+1;
+    public static int getRandomInt(int i){
+        return Math.abs(rn.nextInt())%i + 1;
     }
 
-    public static void test(){
-        //1
-        int m = getRandomInt(100) + 100;
-        int n = getRandomInt(100) + 100;
-
-        char map[][] = new char[m][n];
-        char map1[][] = new char[m][n];
-        char map2[][] = new char[m][n];
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                if(getRandomInt(10) >= 5) {
-                    map[i][j] = '1';
-                    map1[i][j] = '1';
-                    map2[i][j] = '1';
-                }else {
-                    map[i][j] = '0';
-                    map1[i][j] = '0';
-                    map2[i][j] = '0';
-                }
-            }
+    int[] genCards(){
+        int len = getRandomInt(10000);
+        int[] array = new int[len];
+        for(int i=0; i<len; i++){
+            array[i] = getRandomInt(10000);
         }
 
+        return array;
+    }
 
-        Main main = new Main();
-        int expected = main.numIslands(map);
+    public void test(){
+        int cards[] = genCards();
+        int k = getRandomInt(cards.length) - 1;
 
         Solution solution = new Solution();
-        int actual = solution.numIslands(map1);
 
-        if(expected == actual){
-            String input = mapToString(map2);
-            String error = String.format("Input : %s\nExpected : %s\nActual : %s\n", input, expected, actual);
-            throw new RuntimeException(error);
+        int expected = maxScore(cards, k);
+        int actual = solution.maxScore(cards, k);
+        if(expected != actual){
+            throw new RuntimeException("Test failed\n");
         }
-    }
-
-    private static int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0 || grid[0].length == 0) return 0;
-        int counter = 0;
-        for (int i = 0; i < grid.length; i++){
-            for (int j = 0; j < grid[i].length; j++){
-                if (grid[i][j] == '1') {
-                    dfs(grid, i, j);
-                    counter++;
-                }
-            }
-        }
-        return counter;
-    }
-
-    private static void dfs(char[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0') return;
-        grid[i][j] = '0'; // mark as visited
-        for (int[] dir : directions) {
-            dfs(grid, i + dir[0], j + dir[1]);
-        }
-    }
-
-    private static String mapToString(char[][] map) {
-        String ret = "\n";
-        for(int i=0; i<map.length; i++){
-            for(int j=0; j<map[i].length; j++){
-                ret = ret + map[i][j] + ",";
-            }
-            ret = ret.substring(0, ret.length()-1);
-            ret += "\n";
-        }
-
-        return ret;
     }
 
     public static void main(String[] args) {
-        try{
-            for(int i=0; i<20; i++){
-                test();
+        try {
+            Main main = new Main();
+            for (int i = 0; i < 20; i++) {
+                main.test();
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());
             System.exit(-1);
         }
+    }
+    public int maxScore(int[] cardPoints, int k) {
+        int total_pts = 0;
+        int sum = 0;
+        int n = cardPoints.length;
+        for (int i = 0; i < n; i++)
+        {
+            total_pts += cardPoints[i];
+            if (i < n - k)
+                sum += cardPoints[i];
+        }
+
+        int max = total_pts - sum;
+        for (int i = 0; i < k; i++)
+        {
+            sum = sum - cardPoints[i];
+            sum = sum + cardPoints[n-k+i];
+            max = Math.max(max, total_pts - sum);
+        }
+        return max;
     }
 }
