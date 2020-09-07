@@ -6,10 +6,17 @@ public class Main {
     Map<String, Boolean> testMap = new HashMap<String, Boolean>();
 
     public Main(){
-//        testMap.put("!(f,|(&(t,f,t),!(t)))", true);
-//        testMap.put("|(f,t)", true);
-//        testMap.put("&(t,f,(f,|(&(t,f,t),!(t)))", false);
-//        testMap.put("|(&(t,f,t),!(t))", false);
+        testMap.put("!(f,|(&(t,f,t),!(t)))", true);
+        testMap.put("|(f,t)", true);
+        testMap.put("&(t,f,(f,|(&(t,f,t),!(t)))", false);
+        testMap.put("|(&(t,f,t),!(t))", false);
+        testMap.put("&(t,t,t)", true);
+        testMap.put("|(&(t,f,t),!(t))", false);
+        testMap.put("|(f,&(t,t))", true);
+        testMap.put("!(&(!(t),&(f),|(f)))", true);
+        testMap.put("!(&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f)))",true);
+        testMap.put("!(&(!(t),!(!(&(f))),&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f))))", true);
+        testMap.put("&(&(&(&(t,t,f),|(f,f,t),|(f)),!(&(t)),!(&(|(f,f,t),&(&(f),&(!(t),&(f),|(f)),&(!(&(f)),&(t),|(f,f,t))),&(t)))),&(&(f),&(!(t),&(f),|(f)),&(!(&(f)),&(t),|(f,f,t))),&(|(f,f,t),&(&(f),&(!(t),&(f),|(f)),&(!(&(f)),&(t),|(f,f,t))),&(t)))", false);
     }
 
 
@@ -27,7 +34,7 @@ public class Main {
         Solution solution = new Solution();
         testMap.forEach( (k,v) ->{
             boolean ret = solution.parseBoolExpr(k);
-            System.out.println(k + "=" + ret + "," + v);
+//            System.out.println(k + "=" + ret + "," + v);
             if(ret != v){
                 throw new RuntimeException("Input:" + k + "\nExpected:" + v + "\nActual:" + ret);
             }
