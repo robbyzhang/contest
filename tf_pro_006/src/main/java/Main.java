@@ -10,22 +10,29 @@ public class Main {
     final int maxLen = 1000;
 
     public int[] getNumber(){
-        int len = getRandomInt(maxLen);
+        int len = getRandomInt(maxLen) + 50;
         int[] ret = new int[len];
         for(int i=0; i<len; i++){
-            ret[i] = getRandomInt(9);
+            ret[i] = getRandomInt(1000);
         }
+
         return ret;
     }
 
     public void test(){
         int[] num = getNumber();
+        int[] num1 = new int[num.length];
+        for(int i=0; i<num.length; i++){
+            num1[i] = num[i];
+        }
+
         Solution solution = new Solution();
 
         int correct = lengthOfLIS(num);
-        int actual = solution.lengthOfLIS(num);
+        int actual = solution.lengthOfLIS(num1);
 
 //        System.out.println(num.length);
+//        System.out.println(actual);
 
         if(correct != actual){
             throw new RuntimeException("Test failed");
@@ -35,7 +42,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Main main = new Main();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 main.test();
             }
         }catch (Exception ex){

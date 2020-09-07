@@ -10,7 +10,7 @@ public class Main {
     final int maxLen = 1000;
 
     public String getNumber(){
-        int len = getRandomInt(maxLen);
+        int len = getRandomInt(maxLen) + 50;
         String ret = "";
         for(int i=0; i<len; i++){
             ret += getRandomInt(9);
@@ -23,9 +23,8 @@ public class Main {
         String num = getNumber();
         Solution solution = new Solution();
         int k = getRandomInt(maxLen);
-        String num1 = num;
         String correct = minInteger(num, k);
-        String actual = solution.minInteger(num1, k);
+        String actual = solution.minInteger(num, k);
 
         if(!correct.equals(actual)){
             throw new RuntimeException("Test failed");
@@ -35,7 +34,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Main main = new Main();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 main.test();
             }
         }catch (Exception ex){

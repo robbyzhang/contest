@@ -8,19 +8,22 @@ public class Main {
 
     public static void test(){
         //1
-        int m = getRandomInt(30);
-        int n = getRandomInt(30);
+        int m = getRandomInt(100) + 100;
+        int n = getRandomInt(100) + 100;
 
         char map[][] = new char[m][n];
         char map1[][] = new char[m][n];
+        char map2[][] = new char[m][n];
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 if(getRandomInt(10) >= 5) {
                     map[i][j] = '1';
                     map1[i][j] = '1';
+                    map2[i][j] = '1';
                 }else {
                     map[i][j] = '0';
                     map1[i][j] = '0';
+                    map2[i][j] = '0';
                 }
             }
         }
@@ -32,8 +35,8 @@ public class Main {
         Solution solution = new Solution();
         int actual = solution.numIslands(map1);
 
-        if(expected != actual){
-            String input = mapToString(map1);
+        if(expected == actual){
+            String input = mapToString(map2);
             String error = String.format("Input : %s\nExpected : %s\nActual : %s\n", input, expected, actual);
             throw new RuntimeException(error);
         }
@@ -77,7 +80,7 @@ public class Main {
 
     public static void main(String[] args) {
         try{
-            for(int i=0; i<10; i++){
+            for(int i=0; i<20; i++){
                 test();
             }
         }catch (Exception ex){

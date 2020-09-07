@@ -1,14 +1,15 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Main {
     Map<String, Boolean> testMap = new HashMap<String, Boolean>();
 
     public Main(){
-        testMap.put("!(f)", true);
-        testMap.put("|(f,t)", true);
-        testMap.put("&(t,f)", false);
-        testMap.put("|(&(t,f,t),!(t))", false);
+//        testMap.put("!(f,|(&(t,f,t),!(t)))", true);
+//        testMap.put("|(f,t)", true);
+//        testMap.put("&(t,f,(f,|(&(t,f,t),!(t)))", false);
+//        testMap.put("|(&(t,f,t),!(t))", false);
     }
 
 
@@ -26,11 +27,19 @@ public class Main {
         Solution solution = new Solution();
         testMap.forEach( (k,v) ->{
             boolean ret = solution.parseBoolExpr(k);
+            System.out.println(k + "=" + ret + "," + v);
             if(ret != v){
                 throw new RuntimeException("Input:" + k + "\nExpected:" + v + "\nActual:" + ret);
             }
         });
     }
+
+    static Random rn = new Random(System.currentTimeMillis());
+    public static int getRandomInt(int i){
+        return Math.abs(rn.nextInt())%i + 1;
+    }
+
+
 
     public boolean parseBoolExpr(String expression) {
         if (expression.length() == 1) return expression.equals("t");
