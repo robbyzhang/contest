@@ -13,7 +13,6 @@ public class Test1 extends BaseTest{
                 new Answer(0, questionId, Util.readFileToBase64("188.correct.txt")),
                 AnswerResponse.class);
 
-        System.out.println(resp.getScore());
         Assert.assertEquals(expectedPoints, resp.getScore());
         Assert.assertTrue(resp.isCorrect());
         Assert.assertEquals(resp.getQuestionId(), questionId);

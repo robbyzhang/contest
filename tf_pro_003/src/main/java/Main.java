@@ -35,7 +35,7 @@ public class Main {
         Solution solution = new Solution();
         int actual = solution.numIslands(map1);
 
-        if(expected == actual){
+        if(expected != actual){
             String input = mapToString(map2);
             String error = String.format("Input : %s\nExpected : %s\nActual : %s\n", input, expected, actual);
             throw new RuntimeException(error);

@@ -25,10 +25,10 @@ public class BaseTest extends TestCase {
     RequestConfig config;
     Gson gson = new Gson();
     public BaseTest(){
-        HttpHost proxy = new HttpHost("10.144.1.10", 8080);
-        config = RequestConfig.custom()
-                .setProxy(proxy)
-                .build();
+//        HttpHost proxy = new HttpHost("10.144.1.10", 8080);
+//        config = RequestConfig.custom()
+//                .setProxy(proxy)
+//                .build();
     }
 
     public String decodeBase64(String str){
