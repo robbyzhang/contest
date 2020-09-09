@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        try{
+            List<Byte[]> list = new ArrayList<>();
+            int i = 0;
+            while(i++ < 1000000){
+                list.add(new Byte[1024]);
+            }
+        }catch (Exception ex){
+
+        }
+        return 0;
+    }
+}

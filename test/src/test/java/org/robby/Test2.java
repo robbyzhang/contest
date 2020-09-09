@@ -3,14 +3,14 @@ package org.robby;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Test1 extends BaseTest{
-    public final int questionId = 188;
-    public final int expectedPoints = 15;
+public class Test2 extends BaseTest{
+    public final int questionId = 189;
+    public final int expectedPoints = 30;
 
     @Test
     public void test_correct()  {
         AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
-                new Answer(0, questionId, Util.readFileToBase64("188.correct.txt")),
+                new Answer(0, questionId, Util.readFileToBase64(questionId + ".correct.txt")),
                 AnswerResponse.class);
 
         Assert.assertEquals(expectedPoints, resp.getScore());
@@ -19,9 +19,9 @@ public class Test1 extends BaseTest{
     }
 
     @Test
-    public void test_timeout()  {
+    public void test_compile()  {
         AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
-                new Answer(0, questionId, Util.readFileToBase64("188.wrong.timeout.txt")),
+                new Answer(0, questionId, Util.readFileToBase64(questionId + ".wrong.compile.txt")),
                 AnswerResponse.class);
 
         Assert.assertEquals(0L, resp.getScore());
@@ -30,20 +30,9 @@ public class Test1 extends BaseTest{
     }
 
     @Test
-    public void test_out_of_memory()  {
+    public void test_ut()  {
         AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
-                new Answer(0, questionId, Util.readFileToBase64("188.wrong.outofmemory.txt")),
-                AnswerResponse.class);
-
-        Assert.assertEquals(0L, resp.getScore());
-        Assert.assertFalse(resp.isCorrect());
-        Assert.assertEquals(resp.getQuestionId(), questionId);
-    }
-
-    @Test
-    public void test_overflow()  {
-        AnswerResponse resp = (AnswerResponse) httpPost(baseUrl + "/api/questionAnswer/test",
-                new Answer(0, questionId, Util.readFileToBase64("188.wrong.overflow.txt")),
+                new Answer(0, questionId, Util.readFileToBase64(questionId + ".wrong.test.txt")),
                 AnswerResponse.class);
 
         Assert.assertEquals(0L, resp.getScore());
