@@ -35,9 +35,9 @@ public class Main {
 //        System.out.println(actual);
 
         if(correct != actual){
-            String msg = "Test Failed\r\n";
-            msg += "Input:" + arrayToString(num) + "\r\n";
-            msg += "Expected:" + correct + "\r\n";
+            String msg = "Test Failed\n";
+            msg += "Input:" + arrayToString(num) + "\n";
+            msg += "Expected:" + correct + "\n";
             msg += "Actual:" + actual;
             throw new RuntimeException(msg);
         }
