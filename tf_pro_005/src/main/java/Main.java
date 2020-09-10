@@ -27,7 +27,10 @@ public class Main {
         String actual = solution.minInteger(num, k);
 
         if(!correct.equals(actual)){
-            throw new RuntimeException("Test failed");
+            String msg = "Input : " + num + "\n";
+            msg += "Expected : " + correct + "\n";
+            msg += "Actual : " + actual;
+            throw new RuntimeException(msg);
         }
     }
 

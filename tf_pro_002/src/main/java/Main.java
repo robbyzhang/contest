@@ -18,6 +18,7 @@ public class Main {
 
     public void test(){
         int cards[] = genCards();
+        String input = arrayToString(cards);
         int k = getRandomInt(cards.length) - 1;
 
         Solution solution = new Solution();
@@ -25,8 +26,24 @@ public class Main {
         int expected = maxScore(cards, k);
         int actual = solution.maxScore(cards, k);
         if(expected != actual){
-            throw new RuntimeException("Test failed\n");
+            String msg = "Test Failed\n";
+            msg += "Input:" + input + "\n";
+            msg += "Expected:" + expected + "\n";
+            msg += "Actual:" + actual;
+            throw new RuntimeException(msg);
         }
+    }
+
+    private String arrayToString(int[] num) {
+        String ret = "[";
+        for(int i=0; i<num.length; i++){
+            if(i != num.length -1){
+                ret += num[i] + ",";
+            }else{
+                ret += num[i];
+            }
+        }
+        return ret + "]";
     }
 
     public static void main(String[] args) {
