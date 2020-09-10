@@ -1,4 +1,4 @@
-##### Minimum Possible Integer After at Most K Adjacent Swaps On Digits [80 points]
+##### 5, Minimum Possible Integer After at Most K Adjacent Swaps On Digits [80 points]
 Given a string num representing the digits of a very large integer and an integer k.
 
 You are allowed to swap any two adjacent digits of the integer at most k times.
