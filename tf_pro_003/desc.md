@@ -1,8 +1,8 @@
-## Number of Islands [40 points]
+##### Number of Islands [40 points]
 
 Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 
-#### Example 1:
+###### Example 1:
 ```
 Input: grid = [
   ["1","1","1","1","0"],
@@ -13,7 +13,7 @@ Input: grid = [
 Output: 1
 ```
 
-#### Example 2:
+###### Example 2:
 ```
 Input: grid = [
   ["1","1","0","0","0"],
