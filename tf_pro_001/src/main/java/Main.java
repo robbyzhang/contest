@@ -35,8 +35,24 @@ public class Main {
 //        System.out.println(actual);
 
         if(correct != actual){
-            throw new RuntimeException("Test failed");
+            String msg = "Test Failed";
+            msg += "Input:" + arrayToString(num) + "\n";
+            msg += "Expected:" + correct + "\n";
+            msg += "Actual:" + actual;
+            throw new RuntimeException(msg);
         }
+    }
+
+    private String arrayToString(int[] num) {
+        String ret = "[";
+        for(int i=0; i<num.length; i++){
+            if(i != num.length){
+                ret += num[i] + ",";
+            }else{
+                ret += num[i];
+            }
+        }
+        return ret + ",]";
     }
 
     public static void main(String[] args) {
