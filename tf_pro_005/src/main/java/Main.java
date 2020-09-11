@@ -39,7 +39,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Main main = new Main();
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 40; i++) {
                 main.test();
             }
         }catch (Exception ex){
