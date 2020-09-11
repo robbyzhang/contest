@@ -8,7 +8,7 @@ public class Main {
     public Main(){
         testMap.put("!(f,|(&(t,f,t),!(t)))", true);
         testMap.put("|(f,t)", true);
-        testMap.put("&(t,f,(f,|(&(t,f,t),!(t)))", false);
+//        testMap.put("&(t,f,(f,|(&(t,f,t),!(t)))", false);
         testMap.put("|(&(t,f,t),!(t))", false);
         testMap.put("&(t,t,t)", true);
         testMap.put("|(&(t,f,t),!(t))", false);
