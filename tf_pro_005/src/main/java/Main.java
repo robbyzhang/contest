@@ -28,6 +28,7 @@ public class Main {
 
         if(!correct.equals(actual)){
             String msg = "Input : " + num + "\n";
+            msg += "K : " + k + "\n";
             msg += "Expected : " + correct + "\n";
             msg += "Actual : " + actual;
             throw new RuntimeException(msg);
