@@ -27,6 +27,7 @@ public class Main {
         int actual = solution.maxScore(cards, k);
         if(expected != actual){
             String msg = "Test Failed\n";
+            msg += "K=" + k;
             msg += "Input:" + input + "\n";
             msg += "Expected:" + expected + "\n";
             msg += "Actual:" + actual;
