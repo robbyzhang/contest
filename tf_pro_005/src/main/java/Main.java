@@ -31,7 +31,7 @@ public class Main {
             msg += "Expected : " + correct + "\n";
             msg += "Actual : " + actual;
             throw new RuntimeException(msg);
-            
+
         }
     }
 

@@ -1,4 +1,4 @@
-##### 1, Longest Increasing Subsequence [15 pints]
+##### 1, Longest Increasing Subsequence [15 points]
 Given an unsorted array of integers, find the length of longest increasing subsequence.
 
 ###### Example:
